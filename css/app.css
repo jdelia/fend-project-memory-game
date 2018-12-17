@@ -1,36 +1,38 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+  font-family: "Coda", cursive;
+  background: #fff url("../img/geometry2.png"); /* Background pattern from Subtle Patterns */
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  font-weight: 300;
+  font-family: "Open Sans", sans-serif;
 }
 
 /*
@@ -38,47 +40,87 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 660px;
+  min-height: 690px;
+  margin: 0 0 3em;
+  padding: 32px;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  border-radius: 10px;
+  box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  height: 125px;
+  color: #fff;
+  font-size: 0;
+  background: #2e3d49;
+  border-radius: 8px;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  perspective: 800px;
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.deck .card .back,
+.deck .card .front {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #2e3d49;
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+.deck .card .back {
+  background: #02b3e4;
+  transform: rotateY(180deg);
+}
+
+/* .deck .card.open .back {
+	transform: rotateY(180deg);
+    background: #02b3e4;
+} */
+.deck .card.match,
+.deck .card.open {
+  transform: rotateY(180deg);
 }
 
 .deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+  cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+  font-size: 33px;
 }
 
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+.deck .wobble .back {
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
+  animation-duration: 0.8s;
+}
+
+.deck .card.mismatched .back {
+  background-color: #c42d3c;
+}
+
+.deck .card.match .back {
+  font-size: 33px;
+  background: #02ccba;
+  cursor: default;
 }
 
 /*
@@ -86,24 +128,73 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 600px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+  display: inline-block;
+  margin: 0;
+  margin: 0 5px 0 0;
+  padding: 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+  display: inline-block;
+  list-style: none;
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.score-panel .counter,
+.score-panel .timer {
+  margin: 0 10px;
+}
+
+.score-panel .timer {
+  margin-left: auto;
+}
+
+.clock {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Animation effects */
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+@keyframes wobble {
+  from {
+    transform: rotateY(180deg) translate3d(0, 0, 0);
+  }
+
+  15% {
+    transform: rotateY(180deg) translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  30% {
+    transform: rotateY(180deg) translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+
+  45% {
+    transform: rotateY(180deg) translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+
+  60% {
+    transform: rotateY(180deg) translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+
+  75% {
+    transform: rotateY(180deg) translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+
+  to {
+    transform: rotateY(180deg) translate3d(0, 0, 0);
+  }
 }
