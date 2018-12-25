@@ -78,6 +78,13 @@ h1 {
   transition: all 0.8s;
 }
 
+@media screen and (orientation: landscape) {
+  .deck {
+    width: 80vh;
+    height: 80vh;
+  }
+}
+
 .deck.hide {
   visibility: hidden;
   opacity: 0;
