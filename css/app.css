@@ -51,6 +51,14 @@ h1 {
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   border-radius: 10px;
   box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.8s;
+}
+
+.deck.hide {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .deck .card {
@@ -72,6 +80,12 @@ h1 {
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* .deck .card.shuffle {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-delay: 1s;
+} */
+
 .deck .card .back,
 .deck .card .front {
   position: absolute;
@@ -86,31 +100,32 @@ h1 {
 }
 
 .deck .card .back {
+  font-size: 33px;
   background: #02b3e4;
   transform: rotateY(180deg);
 }
 
-/* .deck .card.open .back {
+/* .deck .card.flipped .back {
 	transform: rotateY(180deg);
     background: #02b3e4;
 } */
 .deck .card.match,
-.deck .card.open {
+.deck .card.flipped {
   transform: rotateY(180deg);
 }
 
-.deck .card.open {
+.deck .card.flipped {
   cursor: default;
 }
 
-.deck .card.show {
+/* .deck .card.show {
   font-size: 33px;
-}
+} */
 
 .deck .wobble .back {
   -webkit-animation-name: wobble;
   animation-name: wobble;
-  animation-duration: 0.8s;
+  animation-duration: 0.6s;
 }
 
 .deck .card.mismatched .back {
@@ -147,6 +162,10 @@ h1 {
   list-style: none;
 }
 
+.score-panel .stars li.hide {
+  opacity: 0;
+}
+
 .score-panel .restart {
   margin: 0 20px;
   cursor: pointer;
@@ -163,6 +182,58 @@ h1 {
 
 .clock {
   font-family: "Roboto Mono", monospace;
+}
+
+.success {
+  position: absolute;
+  display: none;
+  background-color: transparent;
+}
+
+.success.show {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.success .message {
+  margin-bottom: 0.5em;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.success.show svg {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.success .play-again {
+  padding: 1em 1.5em;
+  color: #222;
+  font-weight: bold;
+  font-size: 1.4rem;
+  background: #02ccba;
+  border-radius: 6px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.play-again.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.success .final-score {
+  text-align: center;
+}
+
+.success .final-score span {
+  display: block;
+  margin: 0.5em auto;
+  font-weight: bold;
+  letter-spacing: 1.1px;
 }
 
 /* Animation effects */
@@ -196,5 +267,183 @@ h1 {
 
   to {
     transform: rotateY(180deg) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 0.8s;
+  animation-delay: 1.8s;
+}
+
+@keyframes rotateIn {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  30% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.rotateIn {
+  -webkit-animation-name: rotateIn;
+  animation-name: rotateIn;
+  animation-duration: 1.3s;
+}
+
+@keyframes rollIn {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -180deg);
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -180deg);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.rollIn {
+  -webkit-animation-name: rollIn;
+  animation-name: rollIn;
+  animation-duration: 2.3s;
+}
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+    opacity: 1;
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.bounceInDown {
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+  animation-duration: 1.8s;
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1) rotateY(180deg);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1) rotateY(180deg);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1) rotateY(180deg);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1) rotateY(180deg);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1) rotateY(180deg);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1) rotateY(180deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1) rotateY(180deg);
+  }
+}
+
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 0.8s;
+}
+
+svg .path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+
+svg .path.circle {
+  -webkit-animation: dash 0.9s ease-in-out;
+  animation: dash 0.65s 0.35s ease-in-out;
+}
+
+svg .path.line {
+  stroke-dashoffset: 1000;
+  animation: dash 0.9s 0.65s ease-in-out forwards;
+}
+
+svg .path.check {
+  stroke-dashoffset: -100;
+  animation: dash-check 0.9s 0.65s ease-in-out forwards;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+
+  100% {
+    stroke-dashoffset: 900;
   }
 }
