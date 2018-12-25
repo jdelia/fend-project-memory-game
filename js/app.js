@@ -131,7 +131,7 @@ function showMoves() {
 
 function addListeners() {
 	DECK.addEventListener("click", function(e) {
-		e.preventDefault();
+		//	e.preventDefault();
 		// if (e.target && e.target.classList !== "front") {
 		// 	console.log("Click Other Target:", e.target);
 		// }
