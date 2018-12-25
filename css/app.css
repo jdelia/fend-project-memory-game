@@ -1,12 +1,10 @@
 html {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -20,24 +18,13 @@ body {
 
 body {
   font-family: "Coda", cursive;
-  background: #fff url("../img/geometry2.png");
-
-  /* Background pattern from Subtle Patterns */
+  background: #fff url("../img/geometry2.png"); /* Background pattern from Subtle Patterns */
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   max-width: 1200px;
   margin: auto;
@@ -53,16 +40,9 @@ h1 {
  */
 
 .deck {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 80vw;
   height: 80vw;
@@ -70,11 +50,9 @@ h1 {
   padding: 32px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   border-radius: 10px;
-  -webkit-box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
   visibility: visible;
   opacity: 1;
-  -webkit-transition: all 0.8s;
   transition: all 0.8s;
 }
 
@@ -85,37 +63,22 @@ h1 {
 
 .deck .card {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 21%;
   height: 21%;
-  margin: 2%;
+  margin: 2%
   color: #fff;
   font-size: 0;
   background: #2e3d49;
   border-radius: 8px;
-  -webkit-box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 800px;
   perspective: 800px;
   cursor: pointer;
-  -webkit-transition: -webkit-transform 0.8s
-    cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* .deck .card.shuffle {
@@ -127,27 +90,19 @@ h1 {
 .deck .card .back,
 .deck .card .front {
   position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100%;
   height: 100%;
   background: #2e3d49;
   border-radius: 8px;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 .deck .card .back {
   font-size: 33px;
   background: #02b3e4;
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -157,7 +112,6 @@ h1 {
 } */
 .deck .card.match,
 .deck .card.flipped {
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -172,7 +126,6 @@ h1 {
 .deck .wobble .back {
   -webkit-animation-name: wobble;
   animation-name: wobble;
-  -webkit-animation-duration: 0.6s;
   animation-duration: 0.6s;
 }
 
@@ -191,12 +144,7 @@ h1 {
  */
 
 .score-panel {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row nowrap;
   flex-flow: row nowrap;
   width: 600px;
   margin-bottom: 20px;
@@ -244,18 +192,9 @@ h1 {
 }
 
 .success.show {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: column wrap;
   flex-flow: column wrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -302,157 +241,64 @@ h1 {
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
-@-webkit-keyframes wobble {
-  from {
-    -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
-    transform: rotateY(180deg) translate3d(0, 0, 0);
-  }
-
-  15% {
-    -webkit-transform: rotateY(180deg) translate3d(-25%, 0, 0)
-      rotate3d(0, 0, 1, -5deg);
-    transform: rotateY(180deg) translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-  }
-
-  30% {
-    -webkit-transform: rotateY(180deg) translate3d(20%, 0, 0)
-      rotate3d(0, 0, 1, 3deg);
-    transform: rotateY(180deg) translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-  }
-
-  45% {
-    -webkit-transform: rotateY(180deg) translate3d(-15%, 0, 0)
-      rotate3d(0, 0, 1, -3deg);
-    transform: rotateY(180deg) translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-  }
-
-  60% {
-    -webkit-transform: rotateY(180deg) translate3d(10%, 0, 0)
-      rotate3d(0, 0, 1, 2deg);
-    transform: rotateY(180deg) translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-  }
-
-  75% {
-    -webkit-transform: rotateY(180deg) translate3d(-5%, 0, 0)
-      rotate3d(0, 0, 1, -1deg);
-    transform: rotateY(180deg) translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-  }
-
-  to {
-    -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
-    transform: rotateY(180deg) translate3d(0, 0, 0);
-  }
-}
-
 @keyframes wobble {
   from {
-    -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
     transform: rotateY(180deg) translate3d(0, 0, 0);
   }
 
   15% {
-    -webkit-transform: rotateY(180deg) translate3d(-25%, 0, 0)
-      rotate3d(0, 0, 1, -5deg);
     transform: rotateY(180deg) translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
   }
 
   30% {
-    -webkit-transform: rotateY(180deg) translate3d(20%, 0, 0)
-      rotate3d(0, 0, 1, 3deg);
     transform: rotateY(180deg) translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
   }
 
   45% {
-    -webkit-transform: rotateY(180deg) translate3d(-15%, 0, 0)
-      rotate3d(0, 0, 1, -3deg);
     transform: rotateY(180deg) translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
   }
 
   60% {
-    -webkit-transform: rotateY(180deg) translate3d(10%, 0, 0)
-      rotate3d(0, 0, 1, 2deg);
     transform: rotateY(180deg) translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
   }
 
   75% {
-    -webkit-transform: rotateY(180deg) translate3d(-5%, 0, 0)
-      rotate3d(0, 0, 1, -1deg);
     transform: rotateY(180deg) translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
   }
 
   to {
-    -webkit-transform: rotateY(180deg) translate3d(0, 0, 0);
     transform: rotateY(180deg) translate3d(0, 0, 0);
-  }
-}
-
-@-webkit-keyframes fadeInUp {
-  from {
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    opacity: 0;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
   }
 }
 
 @keyframes fadeInUp {
   from {
-    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
     opacity: 0;
   }
 
   to {
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
 
 .fadeInUp {
-  -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
-  -webkit-animation-duration: 0.8s;
   animation-duration: 0.8s;
-  -webkit-animation-delay: 1.8s;
   animation-delay: 1.8s;
-}
-
-@-webkit-keyframes rotateIn {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  30% {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
 }
 
 @keyframes rotateIn {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   30% {
-    -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
   }
 
   100% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 }
@@ -460,22 +306,7 @@ h1 {
 .rotateIn {
   -webkit-animation-name: rotateIn;
   animation-name: rotateIn;
-  -webkit-animation-duration: 1.3s;
   animation-duration: 1.3s;
-}
-
-@-webkit-keyframes rollIn {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -180deg);
-    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -180deg);
-    opacity: 0;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
 }
 
 @keyframes rollIn {
@@ -495,46 +326,7 @@ h1 {
 .rollIn {
   -webkit-animation-name: rollIn;
   animation-name: rollIn;
-  -webkit-animation-duration: 2.3s;
   animation-duration: 2.3s;
-}
-
-@-webkit-keyframes bounceInDown {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    -webkit-transform: translate3d(0, -3000px, 0);
-    transform: translate3d(0, -3000px, 0);
-    opacity: 0;
-  }
-
-  60% {
-    -webkit-transform: translate3d(0, 25px, 0);
-    transform: translate3d(0, 25px, 0);
-    opacity: 1;
-  }
-
-  75% {
-    -webkit-transform: translate3d(0, -10px, 0);
-    transform: translate3d(0, -10px, 0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0, 5px, 0);
-    transform: translate3d(0, 5px, 0);
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 @keyframes bounceInDown {
@@ -578,80 +370,35 @@ h1 {
 .bounceInDown {
   -webkit-animation-name: bounceInDown;
   animation-name: bounceInDown;
-  -webkit-animation-duration: 1.8s;
   animation-duration: 1.8s;
-}
-
-@-webkit-keyframes rubberBand {
-  from {
-    -webkit-transform: scale3d(1, 1, 1) rotateY(180deg);
-    transform: scale3d(1, 1, 1) rotateY(180deg);
-  }
-
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1) rotateY(180deg);
-    transform: scale3d(1.25, 0.75, 1) rotateY(180deg);
-  }
-
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1) rotateY(180deg);
-    transform: scale3d(0.75, 1.25, 1) rotateY(180deg);
-  }
-
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1) rotateY(180deg);
-    transform: scale3d(1.15, 0.85, 1) rotateY(180deg);
-  }
-
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1) rotateY(180deg);
-    transform: scale3d(0.95, 1.05, 1) rotateY(180deg);
-  }
-
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1) rotateY(180deg);
-    transform: scale3d(1.05, 0.95, 1) rotateY(180deg);
-  }
-
-  to {
-    -webkit-transform: scale3d(1, 1, 1) rotateY(180deg);
-    transform: scale3d(1, 1, 1) rotateY(180deg);
-  }
 }
 
 @keyframes rubberBand {
   from {
-    -webkit-transform: scale3d(1, 1, 1) rotateY(180deg);
     transform: scale3d(1, 1, 1) rotateY(180deg);
   }
 
   30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1) rotateY(180deg);
     transform: scale3d(1.25, 0.75, 1) rotateY(180deg);
   }
 
   40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1) rotateY(180deg);
     transform: scale3d(0.75, 1.25, 1) rotateY(180deg);
   }
 
   50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1) rotateY(180deg);
     transform: scale3d(1.15, 0.85, 1) rotateY(180deg);
   }
 
   65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1) rotateY(180deg);
     transform: scale3d(0.95, 1.05, 1) rotateY(180deg);
   }
 
   75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1) rotateY(180deg);
     transform: scale3d(1.05, 0.95, 1) rotateY(180deg);
   }
 
   to {
-    -webkit-transform: scale3d(1, 1, 1) rotateY(180deg);
     transform: scale3d(1, 1, 1) rotateY(180deg);
   }
 }
@@ -659,7 +406,6 @@ h1 {
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
-  -webkit-animation-duration: 0.8s;
   animation-duration: 0.8s;
 }
 
@@ -675,24 +421,12 @@ svg .path.circle {
 
 svg .path.line {
   stroke-dashoffset: 1000;
-  -webkit-animation: dash 0.9s 0.65s ease-in-out forwards;
   animation: dash 0.9s 0.65s ease-in-out forwards;
 }
 
 svg .path.check {
   stroke-dashoffset: -100;
-  -webkit-animation: dash-check 0.9s 0.65s ease-in-out forwards;
   animation: dash-check 0.9s 0.65s ease-in-out forwards;
-}
-
-@-webkit-keyframes dash {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-  }
 }
 
 @keyframes dash {
@@ -702,16 +436,6 @@ svg .path.check {
 
   100% {
     stroke-dashoffset: 0;
-  }
-}
-
-@-webkit-keyframes dash-check {
-  0% {
-    stroke-dashoffset: -100;
-  }
-
-  100% {
-    stroke-dashoffset: 900;
   }
 }
 
