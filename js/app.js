@@ -259,7 +259,7 @@ function resetGame() {
 	SUCCESS.classList.remove("show");
 	showMoves();
 	loadCards();
-	addListeners();
+	//addListeners();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -300,7 +300,7 @@ function loadCards() {
 		cards.forEach(function(card) {
 			card.classList.remove("animated", "bounceInDown");
 		});
-	}, 2000);
+	}, 3000);
 }
 
 function resetStars() {
