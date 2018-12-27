@@ -291,17 +291,18 @@ function loadCards() {
 	);
 
 	DECK.innerHTML = cardsHTML.join(" ");
-	cards = DECK.querySelectorAll(".card");
+
 	setTimeout(function() {
+		cards = DECK.querySelectorAll(".card");
 		cards.forEach(function(card) {
 			card.classList.add("animated", "bounceInDown");
 		});
-	}, 500);
+	}, 1000);
 	setTimeout(function() {
 		cards.forEach(function(card) {
 			card.classList.remove("animated", "bounceInDown");
 		});
-	}, 2000);
+	}, 3000);
 }
 
 function resetStars() {
