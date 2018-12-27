@@ -248,6 +248,7 @@ function resetGame() {
 	// reset cards, score and timer.
 	stopTimer();
 	resetTimer();
+	resetStars();
 	moves = 0;
 	timer = [0, 0, 0, 0];
 	timerRunning = false;
