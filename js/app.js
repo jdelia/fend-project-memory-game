@@ -18,17 +18,29 @@ var actualTime;
 var cardsFlipped = [];
 var cardsMatched = 0;
 var clockID = null;
+var starsID = null;
 var firstClick = true;
 var timer = [0, 0, 0, 0];
 var interval;
 var timerRunning = false;
-
+var penalty = [];
+var level = [];
+penalty[0] = false;
+penalty[1] = false;
+level[0] = false;
+level[1] = false;
+level[2] = false;
+level[3] = false;
+level[4] = false;
 const CLOCK = document.querySelector(".clock");
+const SCOREPANEL = document.querySelector(".score-panel");
 const MOVES = document.querySelector(".moves");
 const STARSET = document.querySelectorAll(".stars li");
 const DECK = document.querySelector(".deck");
 const RESTART = document.querySelector(".restart");
 const SUCCESS = document.querySelector(".success");
+const MESSAGE = document.querySelector(".message");
+const MESSAGEICON = document.querySelector(".message-icon");
 const FINAL = document.querySelector(".final-score");
 const PLAYAGAIN = document.querySelector(".play-again");
 const CARDSET = [
@@ -51,34 +63,72 @@ const CARDSET = [
 ];
 
 function updateStars() {
-	if (moves > 12 && moves <= 16) {
-		currentStars = 4;
-		if (currentStars != stars) {
-			STARSET[currentStars].classList.add("hide");
+	let prevStars = currentStars;
+	if (currentStars <= 0) {
+		return;
+	}
+
+	if (moves > 14 && moves <= 16) {
+		if (!level[0]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			level[0] = true;
 		}
 	}
 	if (moves > 16 && moves <= 20) {
-		currentStars = 3;
-		if (currentStars != stars) {
-			STARSET[currentStars].classList.add("hide");
+		if (!level[1]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			level[1] = true;
 		}
 	}
 	if (moves > 20 && moves <= 24) {
-		currentStars = 2;
-		if (currentStars != stars) {
-			STARSET[currentStars].classList.add("hide");
+		if (!level[2]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			level[2] = true;
 		}
 	}
-	if (moves > 24) {
-		currentStars = 2;
-		if (currentStars != stars) {
-			STARSET[currentStars].classList.add("hide");
+	if (moves > 24 && moves <= 30) {
+		if (!level[3]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			level[3] = true;
 		}
 	}
 	if (moves > 30) {
-		currentStars = 1;
-		if (currentStars != stars) {
-			STARSET[currentStars].classList.add("hide");
+		if (!level[4]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			level[4] = true;
+		}
+	}
+	if (timer[3] >= 6000 && timer[3] <= 12000) {
+		if (!penalty[0]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			penalty[0] = true;
+		}
+	}
+	if (timer[3] >= 12000) {
+		if (!penalty[1]) {
+			currentStars--;
+			if (currentStars != stars && currentStars >= 0) {
+				STARSET[currentStars].classList.add("hide");
+			}
+			penalty[1] = true;
 		}
 	}
 }
@@ -229,11 +279,13 @@ function addListeners() {
 function startTimer() {
 	// Run this 100 times per second
 	clockID = setInterval(runClock, 10);
+	starsID = setInterval(updateStars, 1000);
 }
 
 function stopTimer() {
 	timerRunning = false;
 	clearInterval(clockID);
+	clearInterval(starsID);
 	actualTime = CLOCK.innerHTML;
 }
 
@@ -250,16 +302,18 @@ function resetGame() {
 	resetTimer();
 	resetStars();
 	moves = 0;
+	currentStars = 5;
 	timer = [0, 0, 0, 0];
 	timerRunning = false;
 	cardsFlipped = [];
 	cardsMatched = 0;
 	firstClick = true;
+	DECK.innerHTML = "";
 	DECK.classList.remove("hide");
+	SCOREPANEL.classList.remove("hide");
 	SUCCESS.classList.remove("show");
 	showMoves();
 	loadCards();
-	//addListeners();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -280,7 +334,7 @@ function shuffle(array) {
 }
 // Card functions
 function generateCard(card) {
-	return `<li data-card="${card}" class="card"><div class="front"></div><div class="back"><i class="fa fa-${card}"></div></i></li>`;
+	return `<li data-card="${card}" class="card animated bounceInDown"><div class="front"></div><div class="back"><i class="fa fa-${card}"></div></i></li>`;
 }
 
 function loadCards() {
@@ -290,15 +344,11 @@ function loadCards() {
 		})
 	);
 
-	DECK.innerHTML = cardsHTML.join(" ");
-
+	setTimeout(function() {
+		DECK.innerHTML = cardsHTML.join(" ");
+	}, 600);
 	setTimeout(function() {
 		cards = DECK.querySelectorAll(".card");
-		cards.forEach(function(card) {
-			card.classList.add("animated", "bounceInDown");
-		});
-	}, 1000);
-	setTimeout(function() {
 		cards.forEach(function(card) {
 			card.classList.remove("animated", "bounceInDown");
 		});
@@ -316,9 +366,51 @@ function endGame() {
 	FINAL.innerHTML = `<span>Time elapsed ${actualTime}</span>
 	<span>in ${moves} Moves and earning ${currentStars} Stars</span>`;
 	DECK.classList.add("hide");
+	SCOREPANEL.classList.add("hide");
 	PLAYAGAIN.classList.toggle("hide");
-	PLAYAGAIN.classList.add("animated", "fadeInUp");
 	SUCCESS.classList.add("show");
+	let message = "Game over";
+	let messageIcon = "";
+
+	for (var i = 0; i < currentStars; i++) {
+		messageIcon =
+			messageIcon + '<i class="animated rubberBand fa fa-star"></i>';
+	}
+
+	if (currentStars == 0) {
+		messageIcon = '<i class="animated rubberBand fa fa-frown-o"></i>';
+	}
+	if (currentStars == 1) {
+		messageIcon = '<i class="animated rubberBand fa fa-meh-o"></i>';
+	}
+
+	switch (currentStars) {
+		case 5:
+			message = "Excellent!<br>FIVE STARS is amazing!";
+			break;
+		case 4:
+			message = "Wow! Good skills.";
+			break;
+		case 3:
+			message = "You did okay.";
+			break;
+		case 2:
+			message = "Keep practicing.";
+			break;
+		case 1:
+			message = "Try again to see if you can improve.";
+			break;
+		case 0:
+			message = "You finished but did not earn any stars.";
+			break;
+	}
+	if (currentStars == 5 && moves < 16) {
+		message = "Absolutely incredible!<br>FIVE STARS in less than 16 moves.";
+	}
+	MESSAGEICON.innerHTML = messageIcon;
+	MESSAGE.innerHTML = message;
+
+	PLAYAGAIN.classList.add("animated", "fadeInUp");
 	playAgain = setTimeout(function() {
 		PLAYAGAIN.classList.toggle("hide");
 	}, 2000);

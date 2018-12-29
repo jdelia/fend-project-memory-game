@@ -27,6 +27,10 @@ body {
   /* Background pattern from Subtle Patterns */
 }
 
+button {
+  transition: all 0.2s;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,17 +64,16 @@ h1 {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 90vw;
+  max-width: 600px;
   height: 90vw;
+  max-height: 600px;
   margin: 0 0 3em;
   padding: 32px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  background-color: black;
   border-radius: 10px;
   -webkit-box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 12px 15px 30px 0 rgba(46, 61, 73, 0.5);
@@ -78,6 +81,10 @@ h1 {
   opacity: 1;
   -webkit-transition: all 0.8s;
   transition: all 0.8s;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
 }
 
 @media screen and (orientation: landscape) {
@@ -235,6 +242,11 @@ h1 {
   }
 }
 
+.score-panel.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .score-panel .stars {
   display: inline-block;
   margin: 0;
@@ -293,7 +305,8 @@ h1 {
 
 .success .message {
   margin-bottom: 0.5em;
-  font-size: 1.6rem;
+  font-weight: bold;
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -304,14 +317,33 @@ h1 {
 }
 
 .success .play-again {
-  padding: 1em 1.5em;
+  padding: 1.2em 1.8em;
   color: #222;
   font-weight: bold;
-  font-size: 1.4rem;
-  background: #02ccba;
+  font-size: 1.6rem;
+  background: #02b3e4;
   border-radius: 6px;
   visibility: visible;
   opacity: 1;
+}
+
+.success .play-again:focus,
+.success .play-again:hover {
+  background: #02ccba;
+}
+
+.message-icon .fa {
+  margin: auto 1rem;
+  color: gold;
+  font-size: 5rem;
+}
+
+.message-icon .fa-meh-o {
+  color: grey;
+}
+
+.message-icon .fa-frown-o {
+  color: #c00;
 }
 
 .play-again.hide {
@@ -695,64 +727,11 @@ h1 {
   animation-duration: 0.8s;
 }
 
-svg .path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 0;
+.fa-star.rubberBand {
+  animation-duration: 1s;
+  animation-iteration-count: 3;
 }
 
-svg .path.circle {
-  -webkit-animation: dash 0.9s ease-in-out;
-  animation: dash 0.65s 0.35s ease-in-out;
-}
-
-svg .path.line {
-  stroke-dashoffset: 1000;
-  -webkit-animation: dash 0.9s 0.65s ease-in-out forwards;
-  animation: dash 0.9s 0.65s ease-in-out forwards;
-}
-
-svg .path.check {
-  stroke-dashoffset: -100;
-  -webkit-animation: dash-check 0.9s 0.65s ease-in-out forwards;
-  animation: dash-check 0.9s 0.65s ease-in-out forwards;
-}
-
-@-webkit-keyframes dash {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@-webkit-keyframes dash-check {
-  0% {
-    stroke-dashoffset: -100;
-  }
-
-  100% {
-    stroke-dashoffset: 900;
-  }
-}
-
-@keyframes dash-check {
-  0% {
-    stroke-dashoffset: -100;
-  }
-
-  100% {
-    stroke-dashoffset: 900;
-  }
+.fa-meh-o.rubberBand {
+  animation-duration: 1s;
 }

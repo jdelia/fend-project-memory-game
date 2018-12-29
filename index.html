@@ -1,74 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>Matching Game</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link
-			rel="stylesheet prefetch"
-			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
-		/>
-		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-		<link
-			rel="stylesheet prefetch"
-			href="https://fonts.googleapis.com/css?family=Coda|Roboto+Mono"
-		/>
-		<link rel="stylesheet" href="css/app.css" />
-		<script src="js/app.js" async></script>
-	</head>
 
-	<body>
-		<div class="container">
-			<header><h1>Matching Game</h1></header>
+<head>
+	<meta charset="utf-8" />
+	<title>Matching Game</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+	<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda|Roboto+Mono" />
+	<link rel="stylesheet" href="css/app.css" />
+	<script src="js/app.js" async></script>
+</head>
 
-			<section class="score-panel">
-				<ul class="stars">
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-				</ul>
-				<div class="counter"><span class="moves">0</span> Moves</div>
-				<div class="timer">
-					Timer: <span class="clock">00:00:00</span>
-				</div>
+<body>
+	<div class="container">
+		<header>
+			<h1>Matching Game</h1>
+		</header>
 
-				<div class="restart"><i class="fa fa-repeat"></i></div>
-			</section>
-
-			<ul class="deck"></ul>
-			<div class="success">
-				<svg
-					version="1.1"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 130.2 130.2"
-				>
-					<circle
-						class="path circle"
-						fill="none"
-						stroke="#73AF55"
-						stroke-width="6"
-						stroke-miterlimit="10"
-						cx="65.1"
-						cy="65.1"
-						r="62.1"
-					/>
-					<polyline
-						class="path check"
-						fill="none"
-						stroke="#73AF55"
-						stroke-width="6"
-						stroke-linecap="round"
-						stroke-miterlimit="10"
-						points="100.2,40.2 51.5,88.8 29.8,67.5 "
-					/>
-				</svg>
-				<p class="message">You Win!</p>
-				<p class="final-score"></p>
-				<button class="play-again">Play Again</button>
+		<section class="score-panel">
+			<ul class="stars">
+				<li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
+			</ul>
+			<div class="counter"><span class="moves">0</span> Moves</div>
+			<div class="timer">
+				Timer: <span class="clock">00:00:00</span>
 			</div>
+
+			<div class="restart"><i class="fa fa-repeat"></i></div>
+		</section>
+
+		<ul class="deck"></ul>
+		<div class="success">
+			<p class="message-icon"></p>
+			<p class="message">Game Over.</p>
+			<p class="final-score"></p>
+			<button class="play-again">Play Again</button>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>
