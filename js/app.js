@@ -376,7 +376,7 @@ function endGame() {
 			break;
 	}
 	if (currentStars == 5 && moves < 15) {
-		message = "Absolutely incredible!<br>FIVE STARS in less than 15 moves.";
+		message = `Absolutely incredible!<br>FIVE STARS in just than ${moves} moves.`;
 	}
 	MESSAGEICON.innerHTML = messageIcon;
 	MESSAGE.innerHTML = message;
