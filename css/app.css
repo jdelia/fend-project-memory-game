@@ -377,6 +377,7 @@ button {
 
 .info ul {
   margin-left: 0;
+  padding: 0;
 }
 
 .info ul > li {
@@ -408,7 +409,7 @@ button {
 .message-icon .fa {
   margin: auto 1rem;
   color: gold;
-  font-size: 5rem;
+  font-size: 3rem;
 }
 
 .message-icon .fa-meh-o {
@@ -483,6 +484,10 @@ button {
 
   .score-panel .restart {
     margin: 0 20px;
+  }
+
+  .message-icon .fa {
+    font-size: 5rem;
   }
 }
 

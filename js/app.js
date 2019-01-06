@@ -143,7 +143,6 @@ function addListeners() {
 		// }
 		// if our target is front and we have less than 2 cards flipped.
 
-		console.log("The event target is", event.target);
 		if (
 			// e.target &&
 			e.target.classList == "front" &&
