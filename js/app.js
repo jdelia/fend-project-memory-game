@@ -13,7 +13,7 @@
 //var score;
 var stars = 5;
 var currentStars = 5;
-var moves = 0;
+var moves = 24;
 var actualTime;
 var cardsFlipped = [];
 var cardsMatched = 0;
@@ -23,15 +23,7 @@ var firstClick = true;
 var timer = [0, 0, 0, 0];
 var interval;
 var timerRunning = false;
-var penalty = [];
-var level = [];
-penalty[0] = false;
-penalty[1] = false;
-level[0] = false;
-level[1] = false;
-level[2] = false;
-level[3] = false;
-level[4] = false;
+var closeButton;
 const CLOCK = document.querySelector(".clock");
 const SCOREPANEL = document.querySelector(".score-panel");
 const MOVES = document.querySelector(".moves");
@@ -43,6 +35,10 @@ const MESSAGE = document.querySelector(".message");
 const MESSAGEICON = document.querySelector(".message-icon");
 const FINAL = document.querySelector(".final-score");
 const PLAYAGAIN = document.querySelector(".play-again");
+const CLOSEBUTTON = document.querySelector(".close-button");
+const CLOSEINFOBUTTON = document.querySelector(".close-info-button");
+const INFOBUTTON = document.querySelector(".info-button");
+const INFO = document.querySelector(".info");
 const CARDSET = [
 	"diamond",
 	"diamond",
@@ -63,72 +59,32 @@ const CARDSET = [
 ];
 
 function updateStars() {
-	let prevStars = currentStars;
-	if (currentStars <= 0) {
+	if (currentStars <= 1 || moves > 28) {
 		return;
 	}
 
-	if (moves > 14 && moves <= 16) {
-		if (!level[0]) {
-			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			level[0] = true;
-		}
-	}
 	if (moves > 16 && moves <= 20) {
-		if (!level[1]) {
+		if (currentStars == 5) {
 			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			level[1] = true;
+			STARSET[currentStars].classList.add("hide");
 		}
 	}
 	if (moves > 20 && moves <= 24) {
-		if (!level[2]) {
+		if (currentStars == 4) {
 			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			level[2] = true;
+			STARSET[currentStars].classList.add("hide");
 		}
 	}
-	if (moves > 24 && moves <= 30) {
-		if (!level[3]) {
+	if (moves > 24 && moves <= 28) {
+		if (currentStars == 3) {
 			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			level[3] = true;
+			STARSET[currentStars].classList.add("hide");
 		}
 	}
-	if (moves > 30) {
-		if (!level[4]) {
+	if (moves > 28) {
+		if (currentStars == 2) {
 			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			level[4] = true;
-		}
-	}
-	if (timer[3] >= 6000 && timer[3] <= 12000) {
-		if (!penalty[0]) {
-			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			penalty[0] = true;
-		}
-	}
-	if (timer[3] >= 12000) {
-		if (!penalty[1]) {
-			currentStars--;
-			if (currentStars != stars && currentStars >= 0) {
-				STARSET[currentStars].classList.add("hide");
-			}
-			penalty[1] = true;
+			STARSET[currentStars].classList.add("hide");
 		}
 	}
 }
@@ -186,6 +142,8 @@ function addListeners() {
 		// 	console.log("Click Other Target:", e.target);
 		// }
 		// if our target is front and we have less than 2 cards flipped.
+
+		console.log("The event target is", event.target);
 		if (
 			// e.target &&
 			e.target.classList == "front" &&
@@ -361,12 +319,28 @@ function resetStars() {
 	}
 }
 
+// close success window
+function closeWindow() {
+	SUCCESS.classList.remove("show");
+}
+
+// close info window
+function closeInfoWindow(e) {
+	if (e.target == INFO || e.target == CLOSEINFOBUTTON) {
+		INFO.classList.remove("show");
+	}
+}
+
+function infoWindow() {
+	INFO.classList.add("show");
+}
+
 function endGame() {
 	stopTimer();
 	FINAL.innerHTML = `<span>Time elapsed ${actualTime}</span>
 	<span>in ${moves} Moves and earning ${currentStars} Stars</span>`;
-	DECK.classList.add("hide");
-	SCOREPANEL.classList.add("hide");
+	// DECK.classList.add("hide");
+	// SCOREPANEL.classList.add("hide");
 	PLAYAGAIN.classList.toggle("hide");
 	SUCCESS.classList.add("show");
 	let message = "Game over";
@@ -400,12 +374,9 @@ function endGame() {
 		case 1:
 			message = "Try again to see if you can improve.";
 			break;
-		case 0:
-			message = "You finished but did not earn any stars.";
-			break;
 	}
-	if (currentStars == 5 && moves < 16) {
-		message = "Absolutely incredible!<br>FIVE STARS in less than 16 moves.";
+	if (currentStars == 5 && moves < 15) {
+		message = "Absolutely incredible!<br>FIVE STARS in less than 15 moves.";
 	}
 	MESSAGEICON.innerHTML = messageIcon;
 	MESSAGE.innerHTML = message;
@@ -429,11 +400,31 @@ function initGame() {
 	PLAYAGAIN.addEventListener("click", function(e) {
 		resetGame();
 	});
+	SUCCESS.addEventListener("click", function(e) {
+		closeWindow(e);
+	});
+	INFO.addEventListener("click", function(e) {
+		closeInfoWindow(e);
+	});
+	INFOBUTTON.addEventListener("click", function(e) {
+		infoWindow();
+	});
 	resetGame();
 	addListeners();
 }
 
 initGame();
+
+// window.onclick = function(event) {
+// 	console.log("The event target is", event.target, event.currentTarget);
+
+// 	if (event.target == INFO) {
+// 		closeInfoWindow();
+// 	}
+// 	// if (event.target == modalA) {
+// 	// 	modalA.style.display = "none";
+// 	// }
+// };
 
 /*
  * set up the event listener for a card. If a card is clicked:
