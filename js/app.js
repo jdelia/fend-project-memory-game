@@ -109,6 +109,10 @@ function runClock() {
 	6000cs * (1m / 6000cs) = 60secs or 1 min
 	use Math.floor to drop any remainder in division.
 	timer[3] keeps the total number of cs counted
+	**
+	-> This is based on an example I completed in this course https://www.linkedin.com/learning/javascript-essential-training-3/build-a-count-up-timer
+	-> Build a count-up timer.
+	**
 	*/
 
 	timer[3]++;
