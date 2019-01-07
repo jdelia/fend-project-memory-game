@@ -22,9 +22,9 @@ body {
 body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
-  background: #fff url("../img/geometry2.png");
 
   /* Background pattern from Subtle Patterns */
+  background: #fff url("../img/geometry2.png");
 }
 
 button {
@@ -64,8 +64,10 @@ button {
 }
 
 .info-button {
+  position: absolute;
+  right: 30px;
   align-self: flex-end;
-  margin-right: 30px;
+  font-size: 2.4rem;
 }
 
 /*
@@ -99,13 +101,6 @@ button {
   -ms-flex-pack: justify;
   -webkit-box-align: center;
   -ms-flex-align: center;
-}
-
-@media screen and (orientation: landscape) {
-  .deck {
-    width: 70vh;
-    height: 70vh;
-  }
 }
 
 .deck.hide {
@@ -290,7 +285,10 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-width: 100vw;
   height: 100%;
+  min-height: 100vh;
+  overflow: auto;
   background-color: rgba(46, 61, 73, 0.8);
   visibility: hidden;
   opacity: 0;
@@ -432,7 +430,41 @@ button {
   letter-spacing: 1.1px;
 }
 
+@media screen and (orientation: landscape) {
+  .deck {
+    width: 70vh;
+    height: 70vh;
+  }
+
+  .success,
+  .info {
+    align-items: flex-start;
+  }
+}
+
 @media screen and (min-width: 500px) {
+  .score-panel .counter,
+  .score-panel .timer {
+    margin: 0 10px;
+  }
+
+  .score-panel .timer {
+    display: inline-block;
+    order: 0;
+    width: auto;
+    margin-left: auto;
+  }
+
+  .score-panel .stars {
+    margin: 0 5px 0 0;
+  }
+
+  .score-panel .restart {
+    margin: 0 20px;
+  }
+}
+
+@media screen and (min-width: 800px) {
   .page-title {
     font-size: 3.6rem;
   }
@@ -460,26 +492,6 @@ button {
   .deck .card .back,
   .deck .card.match .back {
     font-size: 3rem;
-  }
-
-  .score-panel .counter,
-  .score-panel .timer {
-    margin: 0 10px;
-  }
-
-  .score-panel .timer {
-    display: inline-block;
-    order: 0;
-    width: auto;
-    margin-left: auto;
-  }
-
-  .score-panel .stars {
-    margin: 0 5px 0 0;
-  }
-
-  .score-panel .restart {
-    margin: 0 20px;
   }
 
   .message-icon .fa {
@@ -767,8 +779,8 @@ button {
 .bounceInDown {
   -webkit-animation-name: bounceInDown;
   animation-name: bounceInDown;
-  -webkit-animation-duration: 1.8s;
-  animation-duration: 1.8s;
+  -webkit-animation-duration: 1.4s;
+  animation-duration: 1.4s;
 }
 
 @-webkit-keyframes rubberBand {

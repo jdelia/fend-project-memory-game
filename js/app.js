@@ -323,7 +323,7 @@ function loadCards() {
 		cards.forEach(function(card) {
 			card.classList.remove("animated", "bounceInDown");
 		});
-	}, 3000);
+	}, 2000);
 }
 
 /**
