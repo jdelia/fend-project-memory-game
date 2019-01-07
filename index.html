@@ -2,17 +2,41 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Matching Game</title>
-		<meta name="description" content="" />
+		<title>Memory Game</title>
+		<meta
+			name="description"
+			content="A memory game where you match 8 pairs of icons."
+		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+		<!-- Favicon https://favicon.io/favicon-generator/ -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+
 		<link
 			rel="stylesheet prefetch"
 			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
 		/>
-		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
 		<link
 			rel="stylesheet prefetch"
-			href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono"
+			href="https://fonts.googleapis.com/css?family=Open+Sans%7CRoboto+Mono"
 		/>
 		<link rel="stylesheet" href="css/app.css" />
 		<script src="js/app.js" async></script>
@@ -23,51 +47,56 @@
 				<h1 class="page-title">Memory Game</h1>
 				<button class="info-button fa fa-info-circle"></button>
 			</header>
-			<section class="score-panel">
-				<ul class="stars">
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-					<li><i class="fa fa-star"></i></li>
-				</ul>
-				<div class="counter"><span class="moves">0</span> Moves</div>
-				<div class="timer">
-					Timer: <span class="clock">00:00:00</span>
+			<main class="content">
+				<div class="score-panel">
+					<ul class="stars">
+						<li><i class="fa fa-star"></i></li>
+						<li><i class="fa fa-star"></i></li>
+						<li><i class="fa fa-star"></i></li>
+						<li><i class="fa fa-star"></i></li>
+						<li><i class="fa fa-star"></i></li>
+					</ul>
+					<div class="counter">
+						<span class="moves">0</span> Moves
+					</div>
+					<div class="timer">
+						Timer: <span class="clock">00:00:00</span>
+					</div>
+					<button class="restart fa fa-repeat"></button>
 				</div>
-				<button class="restart fa fa-repeat"></button>
-			</section>
-			<ul class="deck"></ul>
-			<div class="success">
-				<div class="success-card">
-					<button class="close-button">&times;</button>
-					<p class="message-icon"></p>
-					<p class="message">Game Over.</p>
-					<p class="final-score"></p>
-					<button class="play-again">Play Again</button>
-				</div>
-			</div>
-			<div class="info">
-				<div class="info-card">
-					<button class="close-info-button">&times;</button>
-					<div class="message">
-						<h2 class="info-title">Game Rules</h2>
-						<p>
-							Game consists of 8 pairs of icons. Click one card,
-							then another to see if they match. Select all
-							matching pairs in as little moves as possible.
-						</p>
-						<p>Score Guide:</p>
-						<ul>
-							<li>5 Stars = 8 to 16 moves</li>
-							<li>4 Stars = 17 to 20 moves</li>
-							<li>3 Stars = 21 to 24 moves</li>
-							<li>2 Stars = 25 to 28 moves</li>
-							<li>1 Star = 29 or more moves</li>
-						</ul>
+				<ul class="deck"></ul>
+				<div class="success">
+					<div class="success-card">
+						<button class="close-button">&times;</button>
+						<p class="message-icon"></p>
+						<p class="message">Game Over.</p>
+						<p class="final-score"></p>
+						<button class="play-again">Play Again</button>
 					</div>
 				</div>
-			</div>
+				<div class="info">
+					<div class="info-card">
+						<button class="close-info-button">&times;</button>
+						<div class="message">
+							<h2 class="info-title">Game Rules</h2>
+							<p>
+								Game consists of 8 pairs of icons. Click one
+								card, then another to see if they match. Select
+								all matching pairs in as little moves as
+								possible.
+							</p>
+							<p>Score Guide:</p>
+							<ul>
+								<li>5 Stars = 8 to 16 moves</li>
+								<li>4 Stars = 17 to 20 moves</li>
+								<li>3 Stars = 21 to 24 moves</li>
+								<li>2 Stars = 25 to 28 moves</li>
+								<li>1 Star = 29 or more moves</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</main>
 		</div>
 	</body>
 </html>

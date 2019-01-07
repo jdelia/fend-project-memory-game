@@ -50,6 +50,7 @@ button {
 }
 
 .site-header {
+  position: relative;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -435,7 +436,9 @@ button {
     width: 70vh;
     height: 70vh;
   }
+}
 
+@media screen and (orientation: landscape) and (max-height: 400px) {
   .success,
   .info {
     align-items: flex-start;
