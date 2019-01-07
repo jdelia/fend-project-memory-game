@@ -229,6 +229,7 @@ button {
   -webkit-box-direction: normal;
 }
 
+.site-header button,
 .score-panel button {
   background-color: transparent;
   border: 0;
