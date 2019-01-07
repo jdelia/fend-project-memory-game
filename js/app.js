@@ -1,17 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-//var cards;
-//var score;
-var stars = 5;
 var currentStars = 5;
 var moves = 24;
 var actualTime;
@@ -21,9 +7,7 @@ var clockID = null;
 var starsID = null;
 var firstClick = true;
 var timer = [0, 0, 0, 0];
-var interval;
 var timerRunning = false;
-var closeButton;
 const CLOCK = document.querySelector(".clock");
 const SCOREPANEL = document.querySelector(".score-panel");
 const MOVES = document.querySelector(".moves");
@@ -58,6 +42,10 @@ const CARDSET = [
 	"bomb"
 ];
 
+/* Update functions */
+/**
+ * Updates the count of stars based on number of moves.
+ */
 function updateStars() {
 	if (currentStars <= 1 || moves > 28) {
 		return;
@@ -90,6 +78,11 @@ function updateStars() {
 }
 
 // Add a leading zero to single digit numbers for nicely formatted display.
+
+/**
+ * Adds leading zero for single digits.
+ * @param time
+ */
 function leadingZero(time) {
 	if (time <= 9) {
 		time = "0" + time;
@@ -97,7 +90,9 @@ function leadingZero(time) {
 	return time;
 }
 
-// Run a timer with mins, secs and hundredths of secs.
+/**
+ * Run a timer with mins, secs and hundredths of secs.
+ */
 function runClock() {
 	let currentTime =
 		leadingZero(timer[0]) +
@@ -129,12 +124,16 @@ function runClock() {
 
 	timer[2] = Math.floor(timer[3] - timer[1] * 100 - timer[0] * 6000);
 }
-
+/**
+ * Updates the number of moves onscreen and then calls updateStars()
+ */
 function showMoves() {
 	MOVES.innerHTML = moves;
 	updateStars();
 }
-
+/**
+ * Adds the event listener for the card deck and checks each card flipped.
+ */
 function addListeners() {
 	DECK.addEventListener("click", function(e) {
 		//	e.preventDefault();
@@ -232,12 +231,17 @@ function addListeners() {
 	});
 }
 
-// Timer functions
+/**
+ * Timer functions
+ */
 function startTimer() {
 	// Run this 100 times per second
 	clockID = setInterval(runClock, 10);
 	starsID = setInterval(updateStars, 1000);
 }
+/**
+ * Stops the timer
+ */
 
 function stopTimer() {
 	timerRunning = false;
@@ -245,14 +249,17 @@ function stopTimer() {
 	clearInterval(starsID);
 	actualTime = CLOCK.innerHTML;
 }
-
+/**
+ * Resets the timer
+ */
 function resetTimer() {
 	time = 0;
 	CLOCK.innerHTML = "00:00:00";
 }
 
-// Game functions
-
+/**
+ * Resets the game and runs it
+ */
 function resetGame() {
 	// reset cards, score and timer.
 	stopTimer();
@@ -273,7 +280,9 @@ function resetGame() {
 	loadCards();
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+/**
+ * Shuffle function from http://stackoverflow.com/a/2450976
+ */
 function shuffle(array) {
 	var currentIndex = array.length,
 		temporaryValue,
@@ -289,11 +298,16 @@ function shuffle(array) {
 
 	return array;
 }
-// Card functions
+/**
+ * Generates the HTML for each card.
+ * @param card
+ */
 function generateCard(card) {
 	return `<li data-card="${card}" class="card animated bounceInDown"><div class="front"></div><div class="back"><i class="fa fa-${card}"></div></i></li>`;
 }
-
+/**
+ * Loads up the cards and shuffles them.
+ */
 function loadCards() {
 	var cardsHTML = shuffle(
 		CARDSET.map(function(card) {
@@ -312,34 +326,43 @@ function loadCards() {
 	}, 3000);
 }
 
+/**
+ * Resets the number of stars back to 5 and makes them visible.
+ */
 function resetStars() {
 	for (var i = 0; i < 5; i++) {
 		STARSET[i].classList.remove("hide");
 	}
 }
 
-// close success window
+/**
+ * Closes the game over success window.
+ */
 function closeWindow() {
 	SUCCESS.classList.remove("show");
 }
 
-// close info window
+/**
+ * Closes the info window.
+ */
 function closeInfoWindow(e) {
 	if (e.target == INFO || e.target == CLOSEINFOBUTTON) {
 		INFO.classList.remove("show");
 	}
 }
-
+/**
+ * Shows the info window.
+ */
 function infoWindow() {
 	INFO.classList.add("show");
 }
-
+/**
+ * Ends the game and shows results.
+ */
 function endGame() {
 	stopTimer();
 	FINAL.innerHTML = `<span>Time elapsed ${actualTime}</span>
 	<span>in ${moves} Moves and earning ${currentStars} Stars</span>`;
-	// DECK.classList.add("hide");
-	// SCOREPANEL.classList.add("hide");
 	PLAYAGAIN.classList.toggle("hide");
 	SUCCESS.classList.add("show");
 	let message = "Game over";
@@ -375,7 +398,7 @@ function endGame() {
 			break;
 	}
 	if (currentStars == 5 && moves < 15) {
-		message = `Absolutely incredible!<br>FIVE STARS in just than ${moves} moves.`;
+		message = `Absolutely incredible!<br>FIVE STARS in just ${moves} moves.`;
 	}
 	MESSAGEICON.innerHTML = messageIcon;
 	MESSAGE.innerHTML = message;
@@ -389,7 +412,9 @@ function endGame() {
 	}, 4000);
 }
 
-// Initialize Game
+/**
+ * Initialize Game
+ */
 function initGame() {
 	// load game to start over.
 
@@ -413,17 +438,6 @@ function initGame() {
 }
 
 initGame();
-
-// window.onclick = function(event) {
-// 	console.log("The event target is", event.target, event.currentTarget);
-
-// 	if (event.target == INFO) {
-// 		closeInfoWindow();
-// 	}
-// 	// if (event.target == modalA) {
-// 	// 	modalA.style.display = "none";
-// 	// }
-// };
 
 /*
  * set up the event listener for a card. If a card is clicked:

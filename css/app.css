@@ -178,10 +178,6 @@ button {
   -ms-flex-align: center;
 }
 
-.deck .card:hover .front {
-  background-color: rgba(46, 61, 73, 0.5);
-}
-
 .deck .card .back {
   font-size: 2.4rem;
   background: #02b3e4;
